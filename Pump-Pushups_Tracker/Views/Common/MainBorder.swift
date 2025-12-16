@@ -8,6 +8,7 @@ struct MainBorder: ViewModifier {
             RoundedRectangle(cornerRadius: radius)
                 .stroke(color, lineWidth: lineWidth)
         )
-        .padding(8)
+        .padding(.horizontal, 8)
+        .padding(.vertical, 3)
     }
 }
