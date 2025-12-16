@@ -1,0 +1,9 @@
+struct SettingsView: View {
+    var body: some View {
+        
+    }
+}
+
+#Preview {
+    SettingsView()
+}
