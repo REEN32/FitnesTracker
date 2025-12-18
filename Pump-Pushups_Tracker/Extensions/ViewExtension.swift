@@ -8,4 +8,11 @@ extension View {
             )
         )
     }
+    
+    
+    func mainTextStyle(color: Color = Color.selectedPurpleColor, size: CGFloat = 20, weight: Font.Weight = .bold) -> some View {
+        modifier(
+            MainTextStyle(color: color, size: size, weight: weight)
+        )
+    }
 }

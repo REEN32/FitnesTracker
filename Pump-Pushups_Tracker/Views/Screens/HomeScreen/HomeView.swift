@@ -1,5 +1,8 @@
 struct HomeView: View {
     @State var progressValue: Int = 0
+    @State var maxProgress: Int = 100
+    @State var showAddWindow: Bool = false
+    @State var countToAdd: String = ""
     var body: some View {
         ZStack {
             Color.mainBackground
@@ -8,11 +11,10 @@ struct HomeView: View {
                 VStack {
                     HStack {    // первый (верхний) блок
                         VStack {
-                            RingProgressWithCounter(progress: progressValue, maxValue: 100, color: Color.selectedPurpleColor, lineWidth: 12)
+                            RingProgressWithCounter(progress: progressValue, maxValue: maxProgress, color: Color.selectedPurpleColor, lineWidth: 12)
                             Text("Daily Push-Ups")
                                 .padding(.top, 3)
-                                .font(Font.system(size: 20, weight: .bold))
-                                .foregroundStyle(Color.gray)
+                                .mainTextStyle()
                         }
                         .frame(maxWidth: .infinity)
                         
@@ -30,8 +32,7 @@ struct HomeView: View {
                         HStack {
                             Text("Quick Add")
                                 .padding(5)
-                                .font(Font.system(size: 18, weight: .bold))
-                                .foregroundStyle(Color.selectedPurpleColor)
+                                .mainTextStyle(size: 18)
                             Spacer()
                         }
                         GeometryReader { proxy in
@@ -62,13 +63,14 @@ struct HomeView: View {
                                 ButtonQuickAdd(text: "Custom",
                                                width:availableWidth * 0.28,
                                                height: totalHeight * 0.8) {
-                                    
+                                    showAddWindow.toggle()
                                 }
                                 ButtonQuickAdd(text: "Set Goal",
                                                backgroundColor: Color.selectedPurpleColor,
                                                textColor: Color.mainBackground,
                                                width:availableWidth * 0.30,
                                                height: totalHeight * 0.8) {
+                                    print(countToAdd)
                                 }
                             }
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
@@ -79,6 +81,14 @@ struct HomeView: View {
                     .padding(.horizontal, 10)
                     .mainBorder()
                 }
+            }
+            
+            if showAddWindow {
+                AddModalWindow(
+                    showWindow: $showAddWindow,
+                    count: $countToAdd,
+                    progressValue: $progressValue
+                )
             }
         }
     }
