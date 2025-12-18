@@ -36,33 +36,39 @@ struct HomeView: View {
                         }
                         GeometryReader { proxy in
                             let totalWidth = proxy.size.width
-                            let spacing: CGFloat = 8
-                            let totalSpacing = spacing * 4
-                            let availableWidth = totalWidth - totalSpacing
-                            HStack(spacing: spacing) {
+                            let totalHeight = proxy.size.height
+                            let spacingWidth: CGFloat = 8
+                            let totalSpacingWidth = spacingWidth * 4
+                            let availableWidth = totalWidth - totalSpacingWidth
+                            HStack(spacing: spacingWidth) {
                                 ButtonQuickAdd(text: "1",
                                                backgroundColor: Color.selectedPurpleColor,
                                                textColor: Color.mainBackground,
-                                               width: availableWidth * 0.14
+                                               width: availableWidth * 0.14,
+                                               height: totalHeight * 0.8
                                 ) {
                                     progressValue += 1
                                 }
                                 ButtonQuickAdd(text: "5",
-                                               width:availableWidth * 0.14) {
+                                               width:availableWidth * 0.14,
+                                               height: totalHeight * 0.8) {
                                     progressValue += 5
                                 }
                                 ButtonQuickAdd(text: "10",
-                                               width:availableWidth * 0.14) {
+                                               width:availableWidth * 0.14,
+                                               height: totalHeight * 0.8) {
                                     progressValue += 10
                                 }
                                 ButtonQuickAdd(text: "Custom",
-                                               width:availableWidth * 0.28) {
+                                               width:availableWidth * 0.28,
+                                               height: totalHeight * 0.8) {
                                     
                                 }
                                 ButtonQuickAdd(text: "Set Goal",
                                                backgroundColor: Color.selectedPurpleColor,
                                                textColor: Color.mainBackground,
-                                               width:availableWidth * 0.30) {
+                                               width:availableWidth * 0.30,
+                                               height: totalHeight * 0.8) {
                                 }
                             }
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
