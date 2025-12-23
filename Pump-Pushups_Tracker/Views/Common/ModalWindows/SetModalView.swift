@@ -1,4 +1,4 @@
-struct AddModalWindow : View {
+struct SetModalWindow : View {
     @Binding var showWindow: Bool
     @Binding var value: Int
     @Binding var showScreen: Bool
@@ -43,7 +43,7 @@ struct AddModalWindow : View {
                                        width: windiwWidth * 0.26,
                                        height: windowHeight * 0.14) {
                             if enterSuccessfully() {
-                                CountFormatter.addCount(to: &value, what: count)
+                                value = Int(count)!
                                 closeWindow()
                                 showScreen = false
                             }
@@ -51,7 +51,7 @@ struct AddModalWindow : View {
                                 showError = true
                             }
                         }
-                                       .alert("Error: Еhe maximum allowed input is \(9999 - Int(value))", isPresented: $showError) { }
+                                       .alert("Error: Еhe maximum allowed input is 9999", isPresented: $showError) { }
                     }
                 }
                 .frame(width: mainWidth * multiplyerWidth, height: mainHeight * multiplyerHeight)
@@ -64,7 +64,7 @@ struct AddModalWindow : View {
         .ignoresSafeArea(.keyboard)
     }
     
-    private func closeWindow() {        
+    private func closeWindow() {
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
            let window = windowScene.windows.first {
             window.endEditing(true)
@@ -79,7 +79,7 @@ struct AddModalWindow : View {
     private func enterSuccessfully() -> Bool {
         guard !count.isEmpty else { return false }
         guard let _ = Int(count) else { return false }
-        guard value + Int(count)! <= 9999 else { return false }
+        guard Int(count)! <= 9999 else { return false }
         return true
     }
 }

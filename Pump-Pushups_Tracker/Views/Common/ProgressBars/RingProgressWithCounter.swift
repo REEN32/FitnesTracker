@@ -3,6 +3,9 @@ struct RingProgressWithCounter: View {
     let maxValue: Int
     let color: Color
     let lineWidth: CGFloat
+    let width: CGFloat
+    let height: CGFloat
+    let fontSize: CGFloat
     
     func normalizedProgress() -> CGFloat {
         CGFloat(progress) / CGFloat(maxValue)
@@ -15,7 +18,7 @@ struct RingProgressWithCounter: View {
                     color.opacity(0.3),
                     lineWidth: lineWidth
                 )
-                .frame(width: 150, height: 150)
+                .frame(width: width, height: height)
             
             Circle()
                 .trim(from: 0, to: normalizedProgress())
@@ -29,10 +32,10 @@ struct RingProgressWithCounter: View {
                 )
                 .rotationEffect(.degrees(-90))
                 .animation(.easeInOut(duration: 0.5), value: progress)
-                .frame(width: 150, height: 150)
+                .frame(width: width, height: height)
             
             Text("\(progress)/\(maxValue)")
-                .font(.system(size: 28, weight: .bold))
+                .font(.system(size: fontSize, weight: .bold))
                 .foregroundStyle(color)
         }
     }
