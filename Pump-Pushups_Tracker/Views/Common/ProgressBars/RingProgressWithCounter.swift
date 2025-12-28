@@ -7,10 +7,6 @@ struct RingProgressWithCounter: View {
     let height: CGFloat
     let fontSize: CGFloat
     
-    func normalizedProgress() -> CGFloat {
-        CGFloat(progress) / CGFloat(maxValue)
-    }
-    
     var body: some View {
         ZStack {
             Circle()
@@ -38,5 +34,9 @@ struct RingProgressWithCounter: View {
                 .font(.system(size: fontSize, weight: .bold))
                 .foregroundStyle(color)
         }
+    }
+    
+    func normalizedProgress() -> CGFloat {
+        CGFloat(progress) / CGFloat(maxValue)
     }
 }

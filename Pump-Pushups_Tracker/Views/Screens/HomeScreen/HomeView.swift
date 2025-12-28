@@ -12,7 +12,7 @@ struct HomeView: View {
                     .edgesIgnoringSafeArea(.all)
                 GeometryReader { mainProxy in
                     VStack {
-                        HStack {    // первый (верхний) блок
+                        HStack {    // 1 блок
                             VStack {
                                 RingProgressWithCounter(progress: progressValue, maxValue: maxProgress, color: Color.selectedPurpleColor, lineWidth: 12, width: mainProxy.size.width * 0.45, height: mainProxy.size.height * 0.2, fontSize: maxProgress < 1000 || progressValue < 1000 || mainProxy.size.width > 768 ? 28 : 22)
                                 Text("Daily Push-Ups")
@@ -31,7 +31,7 @@ struct HomeView: View {
                         .padding(.horizontal, 10)
                         .mainBorder()
                         
-                        VStack {    // Второй блок
+                        VStack {    // 2 блок
                             HStack {
                                 Text("Quick Add")
                                     .padding(5)
@@ -61,6 +61,7 @@ struct HomeView: View {
                                     ButtonQuickAdd(text: "10",
                                                    width:availableWidth * 0.14,
                                                    height: totalHeight * 0.8) {
+                                        print(mainProxy.size)
                                         CountFormatter.addCount(to: &progressValue, what: "10")
                                     }
                                     ButtonQuickAdd(text: "Custom",
@@ -91,15 +92,80 @@ struct HomeView: View {
                         .padding(.vertical, 15)
                         .padding(.horizontal, 10)
                         .mainBorder()
+                        HStack {
+                            VStack(alignment: .leading) {  // 3 блок
+                                HStack {
+                                    Text("Progress")
+                                        .mainTextStyle(size: 18)
+                                    Spacer()
+                                }
+                                Spacer()
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text("Current Streak:")
+                                            .mainTextStyle(color: Color.selectedPurpleColor.opacity(0.7),
+                                                           size: 15)
+                                        Text("0 days")
+                                            .mainTextStyle()
+                                    }
+                                }
+                                Spacer()
+                                VStack(alignment: .leading) {
+                                    Text("Longest Streak:")
+                                        .mainTextStyle(color: Color.selectedPurpleColor.opacity(0.7),
+                                                       size: 15)
+                                    Text("0 days")
+                                        .mainTextStyle()
+                                }
+                            }
+                            .padding(15)
+                            .frame(width: mainProxy.size.width * 0.45,
+                                   height: mainProxy.size.height * 0.23)
+                            .mainBorder(paddingH: 4)
+                            VStack(alignment: .leading) {   // 4 блок
+                                HStack {
+                                    Text("Achievemts")
+                                        .mainTextStyle(size: 18)
+                                    Spacer()
+                                }
+                                VStack {
+                                    ButtonAchivement(text: "First Step",
+                                                     backgroundColor: Color.goldenBackground,
+                                                     textColor: .selectedPurpleColor,
+                                                     width: mainProxy.size.width * 0.35,
+                                                     height: mainProxy.size.height * 0.035,
+                                                     progress: 50,
+                                                     maxValue: 100) {
+                                    }
+                                                     .padding(.vertical, 2)
+                                    ButtonAchivement(text: "First Step",
+                                                     backgroundColor: Color.gray,
+                                                     textColor: .selectedPurpleColor,
+                                                     width: mainProxy.size.width * 0.35,
+                                                     height: mainProxy.size.height * 0.035,
+                                                     progress: 50,
+                                                     maxValue: 100) {
+                                    }
+                                                     .padding(.vertical, 2)
+                                    ButtonAchivement(text: "First Step",
+                                                     backgroundColor: Color.goldenBackground,
+                                                     textColor: .selectedPurpleColor,
+                                                     width: mainProxy.size.width * 0.35,
+                                                     height: mainProxy.size.height * 0.035,
+                                                     progress: 100,
+                                                     maxValue: 100) {
+                                    }
+                                                     .padding(.vertical, 2)
+                                }
+//                                Spacer()
+                            }
+                            .padding(15)
+                            .frame(width: mainProxy.size.width * 0.45,
+                                   height: mainProxy.size.height * 0.23)
+                            .mainBorder(paddingH: 4)
+                        }
                     }
                 }
-                
-//                if showAddWindow {
-//                    AddModalWindow(
-//                        showWindow: $showAddWindow,
-//                        value: $progressValue
-//                    )
-//                }
             }
         }
     }
