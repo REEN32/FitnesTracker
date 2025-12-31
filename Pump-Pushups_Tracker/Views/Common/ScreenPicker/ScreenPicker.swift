@@ -28,7 +28,7 @@ struct ScreenPickerView: View {
                     VStack {
                         GridRow {
                             Image(systemName: item.icon)
-                                .font(.system(size: height * 0.35))
+                                .font(.system(size: max(1, height * 0.35)))
                                 .frame(height: height * 0.4)
                                 .foregroundStyle(textColor)
                         }

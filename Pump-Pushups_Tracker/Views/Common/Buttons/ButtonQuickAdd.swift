@@ -32,6 +32,6 @@ struct ButtonQuickAdd : View {
                         .stroke(Color.borderColor, lineWidth: 3)
                 )
         }
-        .frame(width: width, height: height)
+        .frame(width: width > 0 ? width : 30, height: height > 0 ? height : 20)
     }
 }

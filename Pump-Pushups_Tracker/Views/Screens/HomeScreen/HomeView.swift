@@ -3,6 +3,7 @@ struct HomeView: View {
     @State var maxProgress: Int = 100
     @State var showAddWindow: Bool = false
     @State var showSetGoalView: Bool = false
+    @State var showTrainingView: Bool = false
     @State var selectedScreen: NavigationItem? = NavigationItem(title: "Main", icon: "house.fill", view: .main)
     
     var body: some View {
@@ -19,9 +20,9 @@ struct HomeView: View {
                             case .main:
                                 mainContentView(mainProxy: mainProxy, paddingH: paddingH, paddingV: paddingV)
                             case .profile:
-                                EmptyView()
+                                TrainingView()
                             case .stats:
-                                EmptyView()
+                                StatsView()
                             }
                         }
                         Spacer()
@@ -97,7 +98,7 @@ struct HomeView: View {
                         ButtonQuickAdd(text: "Custom",
                                        width:availableWidth * 0.28,
                                        height: totalHeight * 0.8) {
-                            showAddWindow.toggle()
+                            showAddWindow = true
                         }
                                        
                         ButtonQuickAdd(text: "Set Goal",
@@ -105,7 +106,7 @@ struct HomeView: View {
                                        textColor: Color.mainBackground,
                                        width:availableWidth * 0.30,
                                        height: totalHeight * 0.8) {
-                            showSetGoalView.toggle()
+                            showSetGoalView = true
                         }
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
@@ -188,8 +189,25 @@ struct HomeView: View {
                        height: mainProxy.size.height * 0.23)
                 .mainBorder(paddingH: paddingH / 2, paddingV: paddingV)
             }
-            HStack {
-                
+            VStack(alignment: .leading) {   // 6 блок
+                HStack {
+                    Text("Анализ качества отжиманий")
+                        .mainTextStyle(size: 18)
+                    Spacer()
+                }
+                Spacer()
+                Text("Средняя оценка за неделю: 85%")
+                    .mainTextStyle(size: 15)
+                Spacer()
+                HStack {
+                    ButtonTemplate(text: "Начать тренировку", backgroundColor: Color.selectedPurpleColor, foregroundColor: Color.mainBackground, foregroungSize: 16, paddingH: 20, paddingV: 8) {
+                        
+                    }
+                    Spacer()
+                    ButtonTemplate(text: "Подробнее", backgroundColor: Color.selectedPurpleColor, foregroundColor: Color.mainBackground, foregroungSize: 16, paddingH: 20, paddingV: 8) {
+                        showTrainingView = true
+                    }
+                }
             }
             .padding(15)
             .frame(maxWidth: .infinity,
@@ -201,8 +219,11 @@ struct HomeView: View {
                                     progress: $progressValue)
         }
         .navigationDestination(isPresented: $showSetGoalView) {
-            SetGoalScreen(showSetGoalView: $showSetGoalView,
+            SetGoalScreen(showScreen: $showSetGoalView,
                           maxProgress: $maxProgress)
+        }
+        .navigationDestination(isPresented: $showTrainingView) {
+            TrainingView()
         }
     }
     

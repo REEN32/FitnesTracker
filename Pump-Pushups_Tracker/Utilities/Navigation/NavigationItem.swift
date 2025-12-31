@@ -17,7 +17,7 @@ struct NavigationItem: Hashable, Equatable {
             case .profile:
                 SettingsView()
             case .stats:
-                EmptyView()
+                StatsView()
             }
         }
     }
