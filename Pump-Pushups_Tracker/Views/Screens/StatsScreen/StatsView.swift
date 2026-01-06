@@ -1,5 +1,5 @@
 struct StatsView: View {
-    let stats: [(String,Int)] = [("Mon",20),("Tue",30),("Wed",40),("Thu",50),("Fri",60),("Sat",70),("Sun",80)]
+    let stats: [(String,Int)] = [("Mon",250),("Tue",100),("Wed",40),("Thu",300),("Fri",100),("Sat",70),("Sun",500)]
     
     var body: some View {
         ZStack {
@@ -10,9 +10,11 @@ struct StatsView: View {
                 let paddingV = proxy.size.height * 0.0038
                 
                 VStack {
-                    VStack {
+                    VStack(alignment: .trailing) {
                         Spacer()
-                        ChartBar(data: stats, maxWidth: proxy.size.width, maxHeight: 300, barWidth: 35, color: Color.blue, fontSize: 15, fontColor: Color.selectedPurple.opacity(0.7))
+                        HStack() {
+                            ChartBar(data: stats, maxWidth: proxy.size.width * 0.8, maxHeight: proxy.size.height * 0.25, barWidth: 35, color: Color.blue, fontSize: proxy.size.width * 0.03, fontColor: Color.selectedPurple.opacity(0.7))
+                        }
                     }
                     .padding(15)
                     .frame(maxWidth: proxy.size.width, maxHeight: proxy.size.height * 0.3)
