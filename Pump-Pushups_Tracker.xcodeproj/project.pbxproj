@@ -6,8 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DEC6E7BA2F143B7A001F1D05 /* Pump-Pushups_Tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DEC6E7B82F143B7A001F1D05 /* Pump-Pushups_Tracker.xcdatamodeld */; };
+		DEE869512F17DD1C00B7A76F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE869502F17DD1C00B7A76F /* CoreData.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		DE36B8002EEEE98A00D9E075 /* Pump-Pushups_Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pump-Pushups_Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEC6E7B92F143B7A001F1D05 /* Pump-Pushups_Tracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Pump-Pushups_Tracker.xcdatamodel"; sourceTree = "<group>"; };
+		DEE869502F17DD1C00B7A76F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -23,6 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEE869512F17DD1C00B7A76F /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -32,7 +40,9 @@
 		DE36B7F72EEEE98A00D9E075 = {
 			isa = PBXGroup;
 			children = (
+				DEC6E7B82F143B7A001F1D05 /* Pump-Pushups_Tracker.xcdatamodeld */,
 				DE36B8022EEEE98A00D9E075 /* Pump-Pushups_Tracker */,
+				DEE8694F2F17DD1B00B7A76F /* Frameworks */,
 				DE36B8012EEEE98A00D9E075 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +53,14 @@
 				DE36B8002EEEE98A00D9E075 /* Pump-Pushups_Tracker.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DEE8694F2F17DD1B00B7A76F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DEE869502F17DD1C00B7A76F /* CoreData.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,6 +137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEC6E7BA2F143B7A001F1D05 /* Pump-Pushups_Tracker.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +349,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DEC6E7B82F143B7A001F1D05 /* Pump-Pushups_Tracker.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DEC6E7B92F143B7A001F1D05 /* Pump-Pushups_Tracker.xcdatamodel */,
+			);
+			currentVersion = DEC6E7B92F143B7A001F1D05 /* Pump-Pushups_Tracker.xcdatamodel */;
+			path = "Pump-Pushups_Tracker.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DE36B7F82EEEE98A00D9E075 /* Project object */;
 }

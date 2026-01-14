@@ -22,7 +22,7 @@ struct HomeView: View {
                             case .profile:
                                 TrainingView()
                             case .stats:
-                                StatsView()
+                                StatsView(monday: progressValue)
                             }
                         }
                         Spacer()

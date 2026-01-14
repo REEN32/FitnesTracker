@@ -9,16 +9,16 @@ struct NavigationItem: Hashable, Equatable {
         case profile
         case stats
         
-        @ViewBuilder
-        var view: some View {
-            switch self {
-                case .main:
-                    HomeView()
-            case .profile:
-                SettingsView()
-            case .stats:
-                StatsView()
-            }
-        }
+//        @ViewBuilder
+//        var view: some View {
+//            switch self {
+//                case .main:
+//                    HomeView()
+//            case .profile:
+//                SettingsView()
+//            case .stats:
+//                StatsView()
+//            }
+//        }
     }
 }

@@ -1,5 +1,11 @@
 struct StatsView: View {
-    let stats: [(String,Int)] = [("Mon",250),("Tue",100),("Wed",40),("Thu",300),("Fri",100),("Sat",70),("Sun",500)]
+    let monday: Int
+    let stats: [(String,Int)]
+    
+    init(monday: Int) {
+        self.monday = monday
+        self.stats = [("Mon",monday),("Tue",100),("Wed",40),("Thu",300),("Fri",100),("Sat",70),("Sun",500)]
+    }
     
     var body: some View {
         ZStack {
