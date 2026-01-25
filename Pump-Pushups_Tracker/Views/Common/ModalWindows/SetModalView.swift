@@ -1,6 +1,5 @@
 struct SetModalWindow : View {
     @Binding var showWindow: Bool
-    @Binding var value: Int
     @Binding var showScreen: Bool
     
     @State var count: String = ""
@@ -43,7 +42,7 @@ struct SetModalWindow : View {
                                        width: windiwWidth * 0.26,
                                        height: windowHeight * 0.14) {
                             if enterSuccessfully() {
-                                value = Int(count)!
+                                CoreDataManager.shared.setMaxCount(maxCount: Int16(count)!)
                                 closeWindow()
                                 showScreen = false
                             }

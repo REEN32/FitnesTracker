@@ -1,5 +1,5 @@
 struct ChartBar: View {
-    let data: [(barName: String, barValue: Int)]
+    let data: [(barName: String, barValue: Int16)]
     let maxWidth: CGFloat
     let maxHeight: CGFloat
     let barWidth: CGFloat

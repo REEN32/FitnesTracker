@@ -1,6 +1,5 @@
 struct CustomProgressAddScreen : View {
     @Binding var showScreen: Bool
-    @Binding var progress: Int
     
     @State var selectedProgress: Int = 0
     @State var showCustomAddWindow: Bool = false
@@ -34,8 +33,8 @@ struct CustomProgressAddScreen : View {
                     .frame(width: proxy.size.width * 0.5, height: proxy.size.height * 0.7)
                     VStack(spacing: 18) {
                         ButtonSetGoal(text: "Save progress", backgroundColor: Color.selectedPurpleColor, textColor: Color.mainBackground, width: .infinity, height: proxy.size.height * 0.07) {
-                            if progress + selectedProgress <= 9999 {
-                                progress += selectedProgress
+                            if CoreDataManager.shared.getCount() + Int16(selectedProgress) <= 9999 {
+                                CoreDataManager.shared.changeCount(count: Int16(selectedProgress))
                                 showScreen = false
                             }
                             else {
@@ -58,7 +57,6 @@ struct CustomProgressAddScreen : View {
             if showCustomAddWindow {
                 AddModalWindow(
                     showWindow: $showCustomAddWindow,
-                    value: $progress,
                     showScreen: $showScreen
                 )
             }

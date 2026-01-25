@@ -1,6 +1,5 @@
 struct HomeView: View {
-    @State var progressValue: Int = 0
-    @State var maxProgress: Int = 100
+    @ObservedObject var user: User = CoreDataManager.shared.getUser()!
     @State var showAddWindow: Bool = false
     @State var showSetGoalView: Bool = false
     @State var showTrainingView: Bool = false
@@ -22,7 +21,7 @@ struct HomeView: View {
                             case .profile:
                                 TrainingView()
                             case .stats:
-                                StatsView(monday: progressValue)
+                                StatsView()
                             }
                         }
                         Spacer()
@@ -44,7 +43,7 @@ struct HomeView: View {
         VStack {
             HStack {    // 1 блок
                 VStack {
-                    RingProgressWithCounter(progress: progressValue, maxValue: maxProgress, color: Color.selectedPurpleColor, lineWidth: 12, width: mainProxy.size.width * 0.45, height: mainProxy.size.height * 0.2, fontSize: maxProgress < 1000 || progressValue < 1000 || mainProxy.size.width > 768 ? 28 : 22)
+                    RingProgressWithCounter(progress: user.countPushUps, maxValue: user.maxPushUps, color: Color.selectedPurpleColor, lineWidth: 12, width: mainProxy.size.width * 0.45, height: mainProxy.size.height * 0.2, fontSize: user.maxPushUps < 1000 || user.countPushUps < 1000 || mainProxy.size.width > 768 ? 28 : 22)
                     Text("Daily Push-Ups")
                         .padding(.top, 3)
                         .mainTextStyle()
@@ -82,18 +81,17 @@ struct HomeView: View {
                                        width: availableWidth * 0.14,
                                        height: totalHeight * 0.8
                         ) {
-                            CountFormatter.addCount(to: &progressValue, what: "1")
+                            CountFormatter.addCount(what: "1")
                         }
                         ButtonQuickAdd(text: "5",
                                        width:availableWidth * 0.14,
                                        height: totalHeight * 0.8) {
-                            CountFormatter.addCount(to: &progressValue, what: "5")
+                            CountFormatter.addCount(what: "5")
                         }
                         ButtonQuickAdd(text: "10",
                                        width:availableWidth * 0.14,
                                        height: totalHeight * 0.8) {
-                            CountFormatter.addCount(to: &progressValue, what: "10")
-                            print(mainProxy.size)
+                            CountFormatter.addCount(what: "10")
                         }
                         ButtonQuickAdd(text: "Custom",
                                        width:availableWidth * 0.28,
@@ -130,7 +128,7 @@ struct HomeView: View {
                             Text("Current Streak:")
                                 .mainTextStyle(color: Color.selectedPurpleColor.opacity(0.7),
                                                size: 15)
-                            Text("0 days")
+                            Text("\(user.countPushUps) days")
                                 .mainTextStyle()
                         }
                     }
@@ -215,12 +213,10 @@ struct HomeView: View {
             .mainBorder(paddingH: paddingH, paddingV: paddingV)
         }
         .navigationDestination(isPresented: $showAddWindow) {
-            CustomProgressAddScreen(showScreen: $showAddWindow,
-                                    progress: $progressValue)
+            CustomProgressAddScreen(showScreen: $showAddWindow)
         }
         .navigationDestination(isPresented: $showSetGoalView) {
-            SetGoalScreen(showScreen: $showSetGoalView,
-                          maxProgress: $maxProgress)
+            SetGoalScreen(showScreen: $showSetGoalView)
         }
         .navigationDestination(isPresented: $showTrainingView) {
             TrainingView()

@@ -1,6 +1,6 @@
 struct RingProgressWithCounter: View {
-    let progress: Int
-    let maxValue: Int
+    let progress: Int16
+    let maxValue: Int16
     let color: Color
     let lineWidth: CGFloat
     let width: CGFloat

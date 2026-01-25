@@ -4,16 +4,44 @@ class CoreDataManager {
     let persistentContainer: NSPersistentContainer
     
     private init() {
-        persistentContainer = NSPersistentContainer(name: "Pusm-Pushups_Tracker")
+        persistentContainer = NSPersistentContainer(name: "Pump-Pushups_Tracker")
         persistentContainer.loadPersistentStores { (description, error) in
             if let error = error {
                 fatalError("Database loading error: \(error)")
             }
         }
+        
+        if getUsers().isEmpty {
+            createUser(name: "Default", countPushUps: 0, maxPushUps: 100)
+        }
     }
     
     var context: NSManagedObjectContext {
         return persistentContainer.viewContext
+    }
+    
+    func changeCount(count: Int16) {
+        let user = getUser()
+        guard let user else { print("Get user error: nil"); return }
+        user.countPushUps += count
+    }
+    
+    func setMaxCount(maxCount: Int16) {
+        let user = getUser()
+        guard let user else { print("Get user error: nil"); return }
+        user.maxPushUps = maxCount
+    }
+    
+    func getCount() -> Int16 {
+        let user = getUser()
+        guard let user else { print("Get user error: nil"); return 0 }
+        return user.countPushUps
+    }
+    
+    func getMaxCount() -> Int16 {
+        let user = getUser()
+        guard let user else { print("Get user error: nil"); return 0 }
+        return user.maxPushUps
     }
     
     func save() {
@@ -41,12 +69,13 @@ class CoreDataManager {
         return users.first
     }
     
-    func createUser(name: String, countPushUps: Int16) {
+    func createUser(name: String, countPushUps: Int16, maxPushUps: Int16) {
         let id = UUID()
         let user = User(context: context)
         user.id = id
         user.name = name
         user.countPushUps = countPushUps
+        user.maxPushUps = maxPushUps
         save()
     }
     

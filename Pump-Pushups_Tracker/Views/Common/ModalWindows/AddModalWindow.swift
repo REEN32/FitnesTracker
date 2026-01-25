@@ -1,6 +1,5 @@
 struct AddModalWindow : View {
     @Binding var showWindow: Bool
-    @Binding var value: Int
     @Binding var showScreen: Bool
     
     @State var count: String = ""
@@ -43,7 +42,7 @@ struct AddModalWindow : View {
                                        width: windiwWidth * 0.26,
                                        height: windowHeight * 0.14) {
                             if enterSuccessfully() {
-                                CountFormatter.addCount(to: &value, what: count)
+                                CountFormatter.addCount(what: count)
                                 closeWindow()
                                 showScreen = false
                             }
@@ -51,7 +50,7 @@ struct AddModalWindow : View {
                                 showError = true
                             }
                         }
-                                       .alert("Error: Еhe maximum allowed input is \(9999 - Int(value))", isPresented: $showError) { }
+                                       .alert("Error: Еhe maximum allowed input is \(9999 - CoreDataManager.shared.getCount())", isPresented: $showError) { }
                     }
                 }
                 .frame(width: mainWidth * multiplyerWidth, height: mainHeight * multiplyerHeight)
@@ -78,8 +77,8 @@ struct AddModalWindow : View {
     
     private func enterSuccessfully() -> Bool {
         guard !count.isEmpty else { return false }
-        guard let _ = Int(count) else { return false }
-        guard value + Int(count)! <= 9999 else { return false }
+        guard let _ = Int16(count) else { return false }
+        guard CoreDataManager.shared.getCount() + Int16(count)! <= 9999 else { return false }
         return true
     }
 }

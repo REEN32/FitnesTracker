@@ -1,6 +1,5 @@
 struct SetGoalScreen : View {
     @Binding var showScreen: Bool
-    @Binding var maxProgress: Int
     
     @State var selectedGoal: Int = 0
     @State var showCustomAddWindow: Bool = false
@@ -34,7 +33,7 @@ struct SetGoalScreen : View {
                     .frame(width: proxy.size.width * 0.5, height: proxy.size.height * 0.7)
                     VStack(spacing: 18) {
                         ButtonSetGoal(text: "Save Goal", backgroundColor: Color.selectedPurpleColor, textColor: Color.mainBackground, width: .infinity, height: proxy.size.height * 0.07) {
-                            maxProgress = selectedGoal
+                            CoreDataManager.shared.setMaxCount(maxCount: Int16(selectedGoal))
                             showScreen = false
                         }
                         .padding(.horizontal, 8)
@@ -54,7 +53,7 @@ struct SetGoalScreen : View {
             }
             
             if showCustomAddWindow {
-                SetModalWindow(showWindow: $showCustomAddWindow, value: $maxProgress, showScreen: $showScreen)
+                SetModalWindow(showWindow: $showCustomAddWindow, showScreen: $showScreen)
             }
             
         }

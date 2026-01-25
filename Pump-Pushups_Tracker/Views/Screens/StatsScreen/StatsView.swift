@@ -1,9 +1,9 @@
 struct StatsView: View {
-    let monday: Int
-    let stats: [(String,Int)]
+    let monday: Int16
+    let stats: [(String,Int16)]
     
-    init(monday: Int) {
-        self.monday = monday
+    init() {
+        self.monday = CoreDataManager.shared.getCount()
         self.stats = [("Mon",monday),("Tue",100),("Wed",40),("Thu",300),("Fri",100),("Sat",70),("Sun",500)]
     }
     
